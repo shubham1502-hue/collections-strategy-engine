@@ -134,17 +134,15 @@ Load `outputs/tableau_master.csv` into Tableau. Dashboard covers:
 
 ---
 
-## Key Findings
-*(Generated from 307K+ borrower simulation)*
+## Key Results
 
-- Treatment arm achieves **~X pp higher response rate** vs Control
-- Total recovery lift of **~X%** with statistical significance (p < 0.01)
-- **DPD 31-60 / High Risk** segment drives disproportionate recovery share
-- **SMS** outperforms Call for borrowers under 40 with high credit scores
-- **Evening contact window** yields highest response for employed borrowers
+| Metric | Control (Flat) | Treatment (Model-Driven) | Lift |
+|---|---|---|---|
+| Response Rate | 38.02% | 52.30% | **+14.28 pp** |
+| Avg Recovery / Borrower | ~203K | ~262K | **+29.8%** |
+| Statistical Significance | — | — | **p < 0.01** |
 
-*Exact figures populate after running the pipeline on the full dataset.*
-
+**Live Dashboard →** [View on Tableau Public](https://public.tableau.com/app/profile/shubham.singh7575/viz/CollectionsContactStrategyEngine/Dashboard1?publish=yes)
 ---
 
 ## Design Decisions
