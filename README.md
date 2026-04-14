@@ -150,7 +150,7 @@ Load `outputs/tableau_master.csv` into Tableau. Dashboard covers:
 - Results are statistically significant (**p < 0.01**)
 - **DPD 1–30 (Medium/High Risk)** segments drive ~69% of total recovery
 - **Email channel** delivers highest recovery per contact, while SMS/Call drive similar response rates
-- Trade-off observed: **contact efficiency decreased by 7.29%**, indicating higher outreach cost per recovery
+- Trade-off observed: **+27.5% recovery uplift vs -7.3% contact efficiency**, indicating higher recovery comes at increased outreach cost — requiring optimization based on business priorities (growth vs cost control)
 
 ---
 
@@ -191,6 +191,17 @@ Applicable to:
 
 ---
 
+## Business Recommendation
+
+- Adopt model-driven contact strategy as default for early delinquency segments (DPD 1–30), where highest recovery lift is observed  
+- Prioritize Email as primary channel for high-value segments due to highest recovery per contact  
+- Use hybrid strategy: maximize recovery in high-risk segments while optimizing cost efficiency in lower-risk segments  
+- Continuously run A/B tests to refine channel mix, timing, and offer strategies  
+
+Net: Favor recovery maximization in early-stage delinquency, with selective efficiency optimization at scale
+
+---
+
 ## Design Decisions
 
 **Rule-based offer logic over ML:** Chosen for interpretability and operational deployability. In collections environments, ops teams need to explain offer decisions to compliance and clients — black-box models create friction.
@@ -198,6 +209,20 @@ Applicable to:
 **Stratified random split:** DPD bucket stratification ensures arm balance across delinquency severity, preventing Simpson's Paradox from confounding lift metrics.
 
 **Simulated response rates over synthetic outcomes:** Response probabilities are derived deterministically from real borrower attributes, not randomly assigned — ensuring the behavioral signal in the data drives the outcome.
+
+---
+
+## Limitations
+
+- Results are based on simulated response behavior derived from borrower attributes; real-world performance may vary due to external factors (agent behavior, regulatory constraints, customer sentiment)
+
+---
+
+## Next Steps
+
+- Introduce ML-based uplift modeling to predict individual treatment impact  
+- Optimize cost-aware strategy (maximize recovery per ₹ spent)  
+- Extend to real-time decisioning using streaming transaction signals  
 
 ---
 
