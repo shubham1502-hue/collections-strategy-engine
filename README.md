@@ -1,19 +1,28 @@
-# Collections Contact Strategy Engine
-### A/B Test: Model-Driven vs Flat Contact Strategy
+# Collections Strategy A/B Testing Engine  
+### Model-Driven vs Flat Contact Strategy at 307K Borrower Scale
 
 A Python-based analytics system that operationalizes behavioral models to optimize debt recovery for consumer finance institutions. Built on real-world borrower data from the Home Credit Default Risk dataset (307K+ borrowers).
 
 ---
 
+## Results Snapshot
+
+- **Response Rate Lift:** +14.28 percentage points (38.02% → 52.30%)
+- **Recovery Uplift:** +27.53%
+- **Incremental Recovery:** ₹8.68 Billion
+- **Statistical Significance:** p < 0.01 (Chi-square test)
+- **Scale:** 307,511 borrowers
+
+Model-driven contact strategy significantly outperforms flat contact strategy across all key metrics.
+
+---
+
 ## Business Problem
 
-Loan servicers and debt collection agencies contact borrowers using flat, one-size-fits-all strategies — same channel, same timing, same message for everyone. This results in:
+Debt collection strategies are typically one-size-fits-all, leading to suboptimal recovery rates and wasted contact effort.
 
-- Low response rates from mismatched channel preferences
-- Revenue leakage from avoidable missed contacts
-- Operational inefficiency: high contact volume, low conversion
-
-This project answers: **does a model-driven contact strategy — right channel, right time, right offer — produce measurably better recovery outcomes than a flat strategy?**
+Key question:
+**Can a model-driven strategy (right channel, timing, and offer) outperform a flat “call everyone” approach in measurable recovery outcomes?**
 
 ---
 
@@ -134,6 +143,17 @@ Load `outputs/tableau_master.csv` into Tableau. Dashboard covers:
 
 ---
 
+## Key Findings
+
+- Treatment arm achieved **+14.28 pp higher response rate** vs control (52.30% vs 38.02%)
+- Total recovery increased by **+27.53%**, generating **₹8.68B incremental recovery**
+- Results are statistically significant (**p < 0.01**)
+- **DPD 1–30 (Medium/High Risk)** segments drive ~69% of total recovery
+- **Email channel** delivers highest recovery per contact, while SMS/Call drive similar response rates
+- Trade-off observed: **contact efficiency decreased by 7.29%**, indicating higher outreach cost per recovery
+
+---
+
 ## Key Results
 
 | Metric | Control (Flat) | Treatment (Model-Driven) | Lift |
@@ -143,6 +163,32 @@ Load `outputs/tableau_master.csv` into Tableau. Dashboard covers:
 | Statistical Significance | — | — | **p < 0.01** |
 
 **Live Dashboard →** [View on Tableau Public](https://public.tableau.com/app/profile/shubham.singh7575/viz/CollectionsContactStrategyEngine/Dashboard1?publish=yes)
+
+---
+
+## Product Insights
+
+- Personalization (channel + timing + offer) materially improves user response behavior
+- Early delinquency segments (DPD 1–30) present highest ROI for intervention
+- Channel optimization shows diminishing returns beyond response rate — recovery per contact varies significantly
+- Trade-off between scale and efficiency must be optimized based on business goals (max recovery vs cost efficiency)
+
+---
+
+## Real-World Application
+
+This system mirrors how fintech lenders and collections teams:
+
+- Optimize borrower contact strategies
+- Run controlled experiments on recovery workflows
+- Balance recovery vs operational cost
+- Personalize interventions using behavioral signals
+
+Applicable to:
+- Lending platforms (collections optimization)
+- BNPL / credit products
+- Fintech risk & recovery teams
+
 ---
 
 ## Design Decisions
