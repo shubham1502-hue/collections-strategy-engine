@@ -228,7 +228,7 @@ Net: Favor recovery maximization in early-stage delinquency, with selective effi
 
 ## Technologies
 - Python (Pandas, NumPy, SciPy)
-- SQL (DuckDB-compatible)
+- SQL (MySQL-compatible)
 - Tableau (dashboard)
 - Home Credit Default Risk dataset (Kaggle)
 
