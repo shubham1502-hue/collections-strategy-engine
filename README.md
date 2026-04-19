@@ -113,11 +113,13 @@ Mirrors how fintech lenders and collections teams:
 - Personalize interventions using behavioral signals
 - Balance recovery maximization vs operational cost
 
+Applicable to: lending platforms, BNPL/credit products, fintech risk & recovery teams.
+
+---
+
 # Note: Full dataset (307K borrowers) required for numbers in README.
 # Download application_train.csv from Kaggle link above.
 # A 5,000-row sample is included for quick exploration.
-
-Applicable to: lending platforms, BNPL/credit products, fintech risk & recovery teams.
 
 ---
 
