@@ -88,7 +88,7 @@ drives outcomes.
 
 ## Tech Stack
 
-`Python` · `Pandas` · `NumPy` · `SciPy` · `SQL` · `Tableau Public`
+`Python` · `Pandas` · `NumPy` · `SciPy` · `MySQL` · `Tableau Public`
 
 ---
 
