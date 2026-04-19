@@ -117,9 +117,9 @@ Applicable to: lending platforms, BNPL/credit products, fintech risk & recovery 
 
 ---
 
-# Note: Full dataset (307K borrowers) required for numbers in README.
-# Download application_train.csv from Kaggle link above.
-# A 5,000-row sample is included for quick exploration.
+## Note: Full dataset (307K borrowers) required for numbers in README. - https://www.kaggle.com/competitions/home-credit-default-risk/data?select=application_train.csv
+## Download application_train.csv from Kaggle link above.
+## A 5,000-row sample is included for quick exploration.
 
 ---
 
