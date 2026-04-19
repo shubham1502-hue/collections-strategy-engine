@@ -80,7 +80,7 @@ drives outcomes.
 
 ## Dashboard Preview
 
-![Collections Strategy Dashboard](dashboard/collections_dashboard.png)
+![Collections Strategy Dashboard](collections_dashboard.png)
 
 🔗 **[Open Live Tableau Dashboard](https://public.tableau.com/app/profile/shubham.singh7575/viz/CollectionsContactStrategyEngine/Dashboard1)**
 
