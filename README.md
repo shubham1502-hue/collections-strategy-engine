@@ -1,5 +1,21 @@
 # Collections Strategy A/B Testing Engine
 
+## Problem This Solves
+
+Collections teams often treat every borrower the same even though delinquency stage, risk, channel preference, and offer sensitivity differ materially. That creates wasted contact effort and leaves recovery on the table.
+
+## How It Helps
+
+- Gives lenders a forkable A/B testing framework for comparing a flat contact strategy against segmented channel, timing, and offer logic.
+- Shows how to quantify lift, statistical significance, recovery impact, and operational trade-offs in a way a risk or collections lead can defend.
+- Provides a clean starter pipeline for borrower profiling, offer assignment, experiment simulation, and BI export.
+
+## When To Fork This
+
+- Fork this if you work on lending, BNPL, collections, risk operations, or customer recovery workflows.
+- Fork it when you want to test whether smarter segmentation beats a one-size-fits-all reminder process.
+- Replace the sample borrower fields, risk tiers, offer matrix, and response assumptions with your own portfolio logic.
+
 **Model-driven vs. flat contact strategy at 307K borrower scale.**  
 A Python analytics system that operationalizes behavioral models to optimize 
 debt recovery — built on the Home Credit Default Risk dataset (307,511 borrowers).
@@ -99,7 +115,7 @@ drives outcomes.
 # 2. Install dependencies
 pip install -r requirements.txt
 # 3. Run full pipeline
-python src/main.py
+python3 src/main.py
 # 4. Load outputs/tableau_master.csv into Tableau
 ```
 
@@ -123,5 +139,5 @@ Applicable to: lending platforms, BNPL/credit products, fintech risk & recovery 
 
 ---
 
-*Part of a portfolio targeting analyst roles at Series A+ startups.*  
+*Part of a founder/operator toolkit for people building practical startup operating systems.*  
 *[← Back to Profile](https://github.com/shubham1502-hue)*
