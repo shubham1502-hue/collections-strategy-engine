@@ -32,12 +32,16 @@ This repo is designed to be forked into an internal company workflow. Fork it, r
 
 ## Minimum Edits To Make It Yours
 
-- sample/customer data
-- risk segment thresholds
-- channel rules
-- offer/timing assumptions
+Change these first:
 
-The fastest path is: fork the repo, replace the inputs above, run the demo or open the template, then adjust only the parts that reflect your company's workflow.
+| Edit | Where | Why |
+|---|---|---|
+| Replace the customer or account dataset. | `src/01_load_and_profile.py` input path or sample data hook | Makes segmentation reflect your real receivables, repayments, or overdue accounts. |
+| Tune risk segment thresholds. | `src/02_offer_logic.py` | Changes which customers receive reminders, settlement offers, or escalation. |
+| Update channel and offer rules. | `src/02_offer_logic.py` | Aligns the strategy with your collections policy and customer experience. |
+| Refresh SQL questions. | `sql/analytics_queries.sql` | Keeps the dashboard focused on the risks your finance or ops team tracks. |
+
+You can leave the AB-test structure, analytics flow, and dashboard framing alone on the first fork. Start by validating one real customer segment before changing the full strategy engine.
 
 ## Results
 
