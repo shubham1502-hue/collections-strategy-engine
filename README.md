@@ -22,6 +22,21 @@ debt recovery — built on the Home Credit Default Risk dataset (307,511 borrowe
 
 ---
 
+## Use This In Your Company
+
+- Use it as a collections strategy simulator for lending, BNPL, credit, or invoice recovery workflows.
+- Keep the experiment structure: baseline strategy, segmented strategy, recovery lift, contact rules, and dashboard outputs.
+- Replace sample borrower/customer cohorts with your own risk bands, balances, channels, and outreach timing.
+
+## Minimum Edits To Make It Yours
+
+- sample/customer data
+- risk segment thresholds
+- channel rules
+- offer/timing assumptions
+
+The fastest path is: fork the repo, replace the inputs above, run the demo or open the template, then adjust only the parts that reflect your company's workflow.
+
 ## Results
 
 | Metric | Control | Treatment | Lift |
