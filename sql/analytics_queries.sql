@@ -1,5 +1,5 @@
 -- ============================================================
--- Collections Contact Strategy Engine — SQL Analytics
+-- Collections Contact Strategy Engine - SQL Analytics
 -- ============================================================
 
 

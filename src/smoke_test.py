@@ -1,5 +1,5 @@
 """
-Smoke test — generates a small synthetic application_train.csv
+Smoke test - generates a small synthetic application_train.csv
 to verify the full pipeline runs before the real Kaggle data arrives.
 
 Usage:

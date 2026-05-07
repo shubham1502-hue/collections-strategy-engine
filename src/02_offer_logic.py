@@ -5,7 +5,7 @@ Assigns a recovery offer to each borrower based on DPD bucket,
 risk tier, and outstanding balance.
 
 This operationalizes the "offer logic" layer referenced in
-collections strategy frameworks — turning borrower segmentation
+collections strategy frameworks - turning borrower segmentation
 into concrete, actionable recovery offers.
 
 Input:  data/processed/borrower_profiles.csv

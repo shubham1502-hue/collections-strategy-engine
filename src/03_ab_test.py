@@ -4,8 +4,8 @@ Module 3: A/B Test Framework
 Splits borrowers into Control and Treatment arms and simulates
 recovery outcomes under each contact strategy.
 
-CONTROL   (Arm A): Flat strategy — call everyone, 10 AM, standard reminder
-TREATMENT (Arm B): Model-driven — right channel, right time, right offer
+CONTROL   (Arm A): Flat strategy - call everyone, 10 AM, standard reminder
+TREATMENT (Arm B): Model-driven - right channel, right time, right offer
 
 Measures lift across:
   - Contact response rate

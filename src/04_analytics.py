@@ -116,7 +116,7 @@ def offer_effectiveness(df: pd.DataFrame) -> pd.DataFrame:
 def pareto_analysis(df: pd.DataFrame) -> pd.DataFrame:
     """
     Identify the borrower segments (DPD x Risk Tier) that contribute
-    disproportionately to total recovery — the 20% driving 80%.
+    disproportionately to total recovery - the 20% driving 80%.
     """
     treat = df[df["arm"] == "Treatment"]
     out = treat.groupby(["dpd_bucket","risk_tier"]).agg(
