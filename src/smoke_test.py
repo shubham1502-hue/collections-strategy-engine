@@ -34,10 +34,10 @@ def generate_synthetic():
         "EXT_SOURCE_3":         np.random.uniform(0.1, 0.9, N).round(4),
     })
     df.to_csv("data/raw/application_train.csv", index=False)
-    print(f"Synthetic dataset written: {N} rows → data/raw/application_train.csv")
+    print(f"Synthetic dataset written: {N} rows -> data/raw/application_train.csv")
 
 if __name__ == "__main__":
-    print("── Smoke Test ──────────────────────────────────────────────")
+    print("-- Smoke Test --------------------------------------------")
     generate_synthetic()
     modules = [
         "src/01_load_and_profile.py",
@@ -51,4 +51,4 @@ if __name__ == "__main__":
         if r.returncode != 0:
             print(f"FAILED at {m}")
             sys.exit(1)
-    print("\n── Smoke test passed. All modules ran successfully. ────────")
+    print("\n-- Smoke test passed. All modules ran successfully. --------")

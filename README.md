@@ -52,6 +52,7 @@ After:
 - Download the expected source data noted in the README into `data/raw/` if required.
 - Run `pip install -r requirements.txt`.
 - Run `python3 src/main.py`.
+- Optionally run `python3 src/main.py --risk-config configs/bnpl-risk-segments.json` to tune risk segment cutoffs.
 - Open the Tableau-ready CSV or dashboard preview first.
 
 ## How to fork and use this for your company
@@ -59,7 +60,7 @@ After:
 1. Click Fork.
 2. Rename the repo if needed.
 3. Replace demo borrower data with your private local data.
-4. Update segmentation and offer rules in `src/02_offer_logic.py`.
+4. Update segmentation thresholds in `configs/bnpl-risk-segments.json` and offer rules in `src/02_offer_logic.py`.
 5. Run the experiment pipeline.
 6. Move outputs into Tableau, Power BI, or a risk operations review.
 
@@ -78,6 +79,7 @@ After:
 - offer eligibility
 - repayment outcome
 - segment fields
+- optional JSON risk threshold config
 
 The default sample data and examples are synthetic, anonymized, or template-only unless the repo explicitly documents a public source. Keep private customer, prospect, employee, investor, borrower, merchant, payment, or company data out of public forks.
 
@@ -184,7 +186,7 @@ Change these first:
 | Edit | Where | Why |
 |---|---|---|
 | Replace the customer or account dataset. | `src/01_load_and_profile.py` input path or sample data hook | Makes segmentation reflect your real receivables, repayments, or overdue accounts. |
-| Tune risk segment thresholds. | `src/02_offer_logic.py` | Changes which customers receive reminders, settlement offers, or escalation. |
+| Tune risk segment thresholds. | `configs/bnpl-risk-segments.json` or your own JSON file | Changes which customers fall into Low, Medium, and High risk segments. |
 | Update channel and offer rules. | `src/02_offer_logic.py` | Aligns the strategy with your collections policy and customer experience. |
 | Refresh SQL questions. | `sql/analytics_queries.sql` | Keeps the dashboard focused on the risks your finance or ops team tracks. |
 
@@ -193,6 +195,22 @@ You can leave the AB-test structure, analytics flow, and dashboard framing alone
 ## Illustrative Demo Readout
 
 Demo outputs are generated locally from synthetic or user-supplied data. Any recovery figures shown below are illustrative scenario outputs, not real portfolio results or validated business impact.
+
+## Risk Segment Config
+
+Defaults still work with no config file. To tune segmentation for a lending or BNPL portfolio, copy `configs/bnpl-risk-segments.json`, adjust the score cutoffs, and run:
+
+```bash
+python src/main.py --risk-config configs/bnpl-risk-segments.json
+```
+
+Supported keys:
+
+- `low_min_ext_score`: borrowers at or above this external score become Low risk.
+- `high_max_ext_score`: borrowers below this external score become High risk.
+- Borrowers between the two thresholds remain Medium risk.
+
+## Results
 
 | Metric | Control | Treatment | Lift |
 |---|---|---|---|

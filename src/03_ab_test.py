@@ -186,11 +186,11 @@ def run():
     summary = compute_summary(df)
     lift    = compute_lift(summary)
 
-    print("\n── A/B TEST SUMMARY ────────────────────────────────────")
+    print("\n-- A/B TEST SUMMARY ------------------------------------")
     print(summary[["arm","total_borrowers","actual_response_rate_pct",
                     "total_recovered_inr","avg_recovery_per_borrower","contact_efficiency"]].to_string(index=False))
 
-    print("\n── LIFT METRICS ────────────────────────────────────────")
+    print("\n-- LIFT METRICS ----------------------------------------")
     for k, v in lift.items():
         print(f"  {k:<35} {v:>10}")
 

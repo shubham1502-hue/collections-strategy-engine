@@ -14,6 +14,7 @@ Prerequisites:
 import subprocess
 import sys
 import os
+import argparse
 
 MODULES = [
     ("01_load_and_profile.py", "Loading and profiling borrowers"),
@@ -22,20 +23,20 @@ MODULES = [
     ("04_analytics.py",        "Computing analytics and exporting BI data"),
 ]
 
-def run():
+def run(risk_config=None):
     print("=" * 60)
     print("  Collections Contact Strategy Engine")
     print("  A/B Test: Model-Driven vs Flat Contact Strategy")
     print("=" * 60)
 
     for module, description in MODULES:
-        print(f"\n{'─'*60}")
+        print(f"\n{'-'*60}")
         print(f"  STEP: {description}")
-        print(f"{'─'*60}")
-        result = subprocess.run(
-            [sys.executable, os.path.join("src", module)],
-            capture_output=False
-        )
+        print(f"{'-'*60}")
+        command = [sys.executable, os.path.join("src", module)]
+        if module == "01_load_and_profile.py" and risk_config:
+            command.extend(["--risk-config", risk_config])
+        result = subprocess.run(command, capture_output=False)
         if result.returncode != 0:
             print(f"\nERROR in {module}. Stopping pipeline.")
             sys.exit(1)
@@ -47,4 +48,7 @@ def run():
     print("=" * 60)
 
 if __name__ == "__main__":
-    run()
+    parser = argparse.ArgumentParser(description="Run the full collections strategy pipeline.")
+    parser.add_argument("--risk-config", help="Optional JSON file with risk segment thresholds.")
+    args = parser.parse_args()
+    run(args.risk_config)
