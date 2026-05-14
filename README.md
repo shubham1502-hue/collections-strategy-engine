@@ -190,16 +190,18 @@ Change these first:
 
 You can leave the AB-test structure, analytics flow, and dashboard framing alone on the first fork. Start by validating one real customer segment before changing the full strategy engine.
 
-## Results
+## Illustrative Demo Readout
+
+Demo outputs are generated locally from synthetic or user-supplied data. Any recovery figures shown below are illustrative scenario outputs, not real portfolio results or validated business impact.
 
 | Metric | Control | Treatment | Lift |
 |---|---|---|---|
 | Response Rate | 38.02% | 52.30% | **+14.28 pp** |
 | Avg Recovery / Borrower | ~₹203K | ~₹262K | **+29.8%** |
-| Incremental Recovery | - | - | **₹8.68 Billion** |
-| Statistical Significance | - | - | **p < 0.01** |
+| Modeled Additional Recovery | - | - | **₹8.68 Billion scenario output** |
+| Significance Check | - | - | **Positive in the demo run** |
 
-Model-driven contact strategy significantly outperforms flat strategy across all metrics.
+In the demo scenario, segmented contact logic outperforms the flat strategy across the tracked metrics. Treat this as an experiment-design readout, not proof of real portfolio uplift.
 
 ---
 
@@ -209,7 +211,7 @@ Debt collection is typically one-size-fits-all - same channel, same timing, same
 for every borrower. This wastes contact effort and leaves recovery on the table.
 
 **Key question:** Can a model-driven strategy (right channel, right timing, right offer)
-produce a measurable, statistically significant lift over a flat "call everyone" approach?
+produce a measurable scenario lift over a flat "call everyone" approach?
 
 ---
 
@@ -239,10 +241,10 @@ produce a measurable, statistically significant lift over a flat "call everyone"
 
 ## Key Findings
 
-- **+14.28 pp response rate lift** - 52.30% vs 38.02% (p < 0.01)
-- **DPD 1-30 (Medium/High Risk)** drives ~69% of total recovery - highest ROI segment
-- **Email** delivers highest recovery per contact; SMS/Call drive similar response rates
-- **Trade-off identified:** +27.5% recovery uplift vs -7.3% contact efficiency -
+- **+14.28 pp response rate lift in the demo readout** - 52.30% vs 38.02%
+- **DPD 1-30 (Medium/High Risk)** drives ~69% of modeled recovery in the demo - highest ROI segment
+- **Email** delivers highest modeled recovery per contact; SMS/Call drive similar response rates
+- **Trade-off identified in the demo readout:** +27.5% recovery uplift vs -7.3% contact efficiency -
  strategy should be tuned based on business priority (max recovery vs cost control)
 
 ---
@@ -303,7 +305,7 @@ Applicable to: lending platforms, BNPL/credit products, fintech risk & recovery 
 
 ## Note: Full dataset (307K borrowers) required for numbers in README. - https://www.kaggle.com/competitions/home-credit-default-risk/data?select=application_train.csv
 ## Download application_train.csv from Kaggle link above.
-## A 5,000-row sample is included for quick exploration.
+## Run `python3 src/smoke_test.py` locally to generate a 5,000-row synthetic sample for quick exploration.
 
 ---
 
