@@ -12,6 +12,7 @@ Collections teams often treat borrowers the same even though delinquency stage, 
 
 - loads and profiles borrower data
 - assigns segmented offer logic
+- adds WhatsApp and SMS action examples for each segment
 - simulates an A/B strategy test
 - calculates lift, significance, and BI-ready outputs
 
@@ -193,6 +194,20 @@ You can leave the AB-test structure, analytics flow, and dashboard framing alone
 ## Illustrative Demo Readout
 
 Demo outputs are generated locally from synthetic or user-supplied data. Any recovery figures shown below are illustrative scenario outputs, not real portfolio results or validated business impact.
+
+## WhatsApp and SMS Actions
+
+`src/02_offer_logic.py` now adds these message-planning fields to `data/processed/borrower_with_offers.csv`:
+
+- `primary_message_channel`: the recommended primary channel for the segment.
+- `message_timing`: when to contact the borrower.
+- `whatsapp_action`: a WhatsApp-ready action example.
+- `sms_action`: an SMS-ready action example.
+- `primary_channel_action`: the action to use for the selected primary channel.
+
+Channel selection starts from the borrower's preferred channel. High-risk or later-DPD borrowers are escalated to WhatsApp so the message can include context, a repayment link, and a callback path. SMS stays short and deadline-oriented; WhatsApp can carry more explanation and support detail.
+
+## Results
 
 | Metric | Control | Treatment | Lift |
 |---|---|---|---|

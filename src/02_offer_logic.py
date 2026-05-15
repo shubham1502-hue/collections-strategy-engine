@@ -56,6 +56,42 @@ OFFER_RECOVERY_RATE = {
 }
 
 
+def channel_examples(row: pd.Series) -> pd.Series:
+    if row["risk_tier"] == "High" or row["dpd_bucket"] in {"DPD_31_60", "DPD_61_90"}:
+        whatsapp_action = (
+            "Send empathetic escalation note with repayment link, settlement option, "
+            "and callback path to a collections specialist."
+        )
+        sms_action = "Urgent: your account needs attention. Review repayment options or request a callback today."
+        message_timing = "Morning follow-up plus same-day evening reminder"
+    elif row["offer_type"] == "Settlement Offer":
+        whatsapp_action = "Send settlement explanation with amount, expiry date, and self-serve payment link."
+        sms_action = "Limited settlement option available. Check your repayment link before it expires."
+        message_timing = row["optimal_contact_window"]
+    else:
+        whatsapp_action = "Send friendly reminder with due amount, payment link, and support contact."
+        sms_action = "Reminder: payment is due. Use your secure repayment link or contact support."
+        message_timing = row["optimal_contact_window"]
+
+    primary_channel = "WHATSAPP" if row["urgency_flag"] else row["preferred_channel"]
+    if primary_channel == "SMS":
+        primary_channel_action = sms_action
+    elif primary_channel == "WHATSAPP":
+        primary_channel_action = whatsapp_action
+    else:
+        primary_channel_action = f"Use {primary_channel} with the same offer context."
+
+    return pd.Series(
+        {
+            "primary_message_channel": primary_channel,
+            "message_timing": message_timing,
+            "whatsapp_action": whatsapp_action,
+            "sms_action": sms_action,
+            "primary_channel_action": primary_channel_action,
+        }
+    )
+
+
 def assign_offers(df: pd.DataFrame) -> pd.DataFrame:
     def lookup(row):
         key = (row["dpd_bucket"], row["risk_tier"])
@@ -74,6 +110,14 @@ def assign_offers(df: pd.DataFrame) -> pd.DataFrame:
         df["recovery_rate_if_responded"] *
         (1 - df["discount_pct"] / 100)
     ).round(2)
+
+    df[[
+        "primary_message_channel",
+        "message_timing",
+        "whatsapp_action",
+        "sms_action",
+        "primary_channel_action",
+    ]] = df.apply(channel_examples, axis=1)
 
     return df
 
