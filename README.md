@@ -305,6 +305,8 @@ pip install -r requirements.txt
 # 3. Run full pipeline
 python3 src/main.py
 # 4. Load outputs/tableau_master.csv into Tableau
+# (Optional) 5. Run the local Streamlit dashboard
+streamlit run app/main.py
 ```
 
 ---
