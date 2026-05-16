@@ -52,7 +52,7 @@ def test_significance(df: pd.DataFrame) -> dict:
         "treatment_response_rate_pct": round(t_responded / t_total * 100, 2),
     }
 
-    print("\n── STATISTICAL SIGNIFICANCE ────────────────────────────")
+    print("\n-- STATISTICAL SIGNIFICANCE ----------------------------")
     for k, v in result.items():
         print(f"  {k:<40} {v}")
 
@@ -71,7 +71,7 @@ def recovery_by_dpd(df: pd.DataFrame) -> pd.DataFrame:
     out["avg_recovered"]     = (out["amount_recovered"] / out["borrowers"]).round(2)
 
     out.to_csv("outputs/recovery_by_dpd.csv", index=False)
-    print("\n── RECOVERY BY DPD BUCKET ──────────────────────────────")
+    print("\n-- RECOVERY BY DPD BUCKET ------------------------------")
     print(out.to_string(index=False))
     return out
 
@@ -90,7 +90,7 @@ def channel_performance(df: pd.DataFrame) -> pd.DataFrame:
     out["recovery_per_contact"] = (out["amount_recovered"] / out["borrowers"]).round(2)
 
     out.to_csv("outputs/channel_performance.csv", index=False)
-    print("\n── CHANNEL PERFORMANCE (Treatment Arm) ─────────────────")
+    print("\n-- CHANNEL PERFORMANCE (Treatment Arm) -----------------")
     print(out.to_string(index=False))
     return out
 
@@ -107,7 +107,7 @@ def offer_effectiveness(df: pd.DataFrame) -> pd.DataFrame:
     out["recovery_per_contact"] = (out["amount_recovered"] / out["borrowers"]).round(2)
 
     out.to_csv("outputs/offer_effectiveness.csv", index=False)
-    print("\n── OFFER EFFECTIVENESS ─────────────────────────────────")
+    print("\n-- OFFER EFFECTIVENESS ---------------------------------")
     print(out.to_string(index=False))
     return out
 
@@ -129,7 +129,7 @@ def pareto_analysis(df: pd.DataFrame) -> pd.DataFrame:
     out["cumulative_pct"]     = out["recovery_share_pct"].cumsum().round(2)
 
     out.to_csv("outputs/pareto_segments.csv", index=False)
-    print("\n── PARETO: TOP RECOVERY SEGMENTS (Treatment) ───────────")
+    print("\n-- PARETO: TOP RECOVERY SEGMENTS (Treatment) -----------")
     print(out.head(10).to_string(index=False))
     return out
 
@@ -147,7 +147,7 @@ def timing_analysis(df: pd.DataFrame) -> pd.DataFrame:
     out["recovery_per_contact"] = (out["amount_recovered"] / out["borrowers"]).round(2)
 
     out.to_csv("outputs/timing_analysis.csv", index=False)
-    print("\n── TIMING WINDOW ANALYSIS (Treatment) ──────────────────")
+    print("\n-- TIMING WINDOW ANALYSIS (Treatment) ------------------")
     print(out.to_string(index=False))
     return out
 
@@ -185,7 +185,7 @@ def run():
     timing = timing_analysis(df)
     tableau_export(df)
 
-    print("\n── ALL OUTPUTS SAVED TO outputs/ ───────────────────────")
+    print("\n-- ALL OUTPUTS SAVED TO outputs/ -----------------------")
 
 if __name__ == "__main__":
     run()

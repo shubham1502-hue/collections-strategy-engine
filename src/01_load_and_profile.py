@@ -11,6 +11,10 @@ Output: data/processed/borrower_profiles.csv
 import pandas as pd
 import numpy as np
 import os
+import argparse
+from pathlib import Path
+
+from risk_config import load_risk_thresholds
 
 RAW_PATH   = "data/raw/application_train.csv"
 OUT_PATH   = "data/processed/borrower_profiles.csv"
@@ -143,14 +147,18 @@ def engineer_behavioral_signals(df: pd.DataFrame) -> pd.DataFrame:
 
 
 # ── 5. Assign Risk Tier ───────────────────────────────────────────────────────
-def assign_risk_tier(df: pd.DataFrame) -> pd.DataFrame:
+def assign_risk_tier(df: pd.DataFrame, thresholds: dict[str, float] | None = None) -> pd.DataFrame:
     """
     Three-tier risk segmentation used to drive offer logic downstream.
     """
+    thresholds = thresholds or load_risk_thresholds()
+    low_min = thresholds["low_min_ext_score"]
+    high_max = thresholds["high_max_ext_score"]
+
     conditions = [
-        df["ext_score_avg"] >= 0.65,
-        (df["ext_score_avg"] >= 0.45) & (df["ext_score_avg"] < 0.65),
-        df["ext_score_avg"] <  0.45,
+        df["ext_score_avg"] >= low_min,
+        (df["ext_score_avg"] >= high_max) & (df["ext_score_avg"] < low_min),
+        df["ext_score_avg"] < high_max,
     ]
     df["risk_tier"] = np.select(conditions, ["Low", "Medium", "High"], default="Medium")
     return df
@@ -166,7 +174,7 @@ FINAL_COLS = [
     "preferred_channel", "optimal_contact_window"
 ]
 
-def run():
+def run(risk_config_path: Path | None = None):
     assert os.path.exists(RAW_PATH), (
         f"\nFile not found: {RAW_PATH}\n"
         "Download from: https://www.kaggle.com/competitions/home-credit-default-risk/data\n"
@@ -177,7 +185,7 @@ def run():
     df = clean(df)
     df = assign_dpd_bucket(df)
     df = engineer_behavioral_signals(df)
-    df = assign_risk_tier(df)
+    df = assign_risk_tier(df, load_risk_thresholds(risk_config_path))
 
     df = df[FINAL_COLS]
     os.makedirs("data/processed", exist_ok=True)
@@ -189,4 +197,7 @@ def run():
     print(df.head(3).T)
 
 if __name__ == "__main__":
-    run()
+    parser = argparse.ArgumentParser(description="Load borrower data and assign risk segments.")
+    parser.add_argument("--risk-config", type=Path, help="Optional JSON file with risk segment thresholds.")
+    args = parser.parse_args()
+    run(args.risk_config)
